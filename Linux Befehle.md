@@ -101,7 +101,7 @@ iptables -t nat --line-numbers -n -L
 iptables -t nat -D PREROUTING 2
 ```
 
-Information from (here)[https://fixyacloud.wordpress.com/2020/01/26/how-to-run-a-server-on-port-80-as-a-normal-user-on-linux/]
+Information from [here](https://fixyacloud.wordpress.com/2020/01/26/how-to-run-a-server-on-port-80-as-a-normal-user-on-linux/)
 
 
 ## PM2 Service
