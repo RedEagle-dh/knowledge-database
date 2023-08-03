@@ -1,75 +1,89 @@
-# Linux Befehle
-## User anlegen
+# Linux Commands
+## User
+### Create User
 ```bash
-useradd [name]
+useradd myUser
 ```
-## User passwort ändern
+### Change user password
 ```bash
-passwd [user]
-```
-
-## Group erstellen
-
-```bash
-groupadd [Gruppe]
+passwd myUser
 ```
 
-## Group an user verteilen
-### Als weitere Gruppe
-```bash
-usermod -a -G [Gruppe] [User]
-```
-
-### Als standard Gruppe
-```bash
-usermod -g [Gruppe] [User]
-```
-
-## Anzeigen von Gruppen eines Users
-```bash
-groups [User]
-```
-
-## Erstellen einer Datei
-```bash
-touch [name]
-```
-
-## Ändern des Owners (Gruppe) von Ordnern und Unterordnern
+### Delete user
 
 ```bash
-chown -R [User]:[Gruppe] [Ordner]
+userdel myUser
 ```
 
-## Ändern der Permissions von Ordnern und Unterordnern
+## Groups
+
+### Create group
+```bash
+groupadd myGroup
+```
+
+### Delete group
+```bash
+groupdel myGroup
+```
+
+### Add user to group
 
 ```bash
-chmod [ID] -R [Gruppe]
+usermod -a -G myGroup myUser
 ```
 
-Mit ID ist die PermissionID gemeint, siehe [hier](https://chmod-calculator.com/).
+### Set standard group for a user
+```bash
+usermod -g myGroup myUser
+```
+
+### Show a user's groups
+```bash
+groups myUser
+```
+
+## Create a file
+```bash
+touch myFile
+```
+
+## Directory/File modification
+
+### Change owner of a directory/file
+```bash
+chown -R myUser:myUsersGroup myFileOrDirectory
+```
+
+### Change permission of directory or file
+
+```bash
+chmod 777 -R myDirOrFile
+```
+* -R for every child directory/file
+* 777 is the permissionId, see [here](https://chmod-calculator.com/).
 
 
-## Einloggen als User
+## Log in as another user (superuser)
 ```bash
 su [User]
 ```
 
 
-## Moven von Ordnern in einen anderen Ordner
+## Move files/directories
 ```bash
-move [Ordner der gemoved werden soll] [Zielordner]
+move /path/to/oldFileOrFolder /path/to/newFolder
 ```
 
-## Anzeigen des aktuellen Parent Ordners
+## Show current parent dir
 ```bash
 pwd
 ```
 
-## Anlegen des Public SSH Keys für einen User
-Im root folder des Users Ordner `.ssh` erstellen.\
-Darin die Datei `authorized_keys` erstellen.\
-Mit vim bearbeiten und den Public-Key reinpasten.
+## Create SSH for another user
+1. Create `.ssh` folder in the home dir of the user. \
+2. Create `authorized_keys` in /.ssh \
+3. Add the public key to `authorized_keys`
 
 ## Chmod Permission Rechte
 
