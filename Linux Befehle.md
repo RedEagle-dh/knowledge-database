@@ -99,6 +99,13 @@ x -> execute
 3. Public
 
 ## Port redirection
+
+### Which ports are used from the user ports
+
+```bash
+netstat -tuln | grep -E ':[1-9][0-9]{3,4}\s'
+```
+
 ### Redirect from port 80 to 8080
 
 ```bash
