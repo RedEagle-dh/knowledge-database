@@ -9,8 +9,8 @@ E.g. the path /api/foo/:bar has the following folder hierarchy:
 - app
 - - api
 - - - foo
-- - - [bar]
-- - - - route.ts
+- - - - [bar]
+- - - - - route.ts
 
 ```ts
 export async function PATCH(
