@@ -69,6 +69,16 @@ chmod 777 -R myDirOrFile
 su [User]
 ```
 
+## Change bash from a user
+```bash
+chsh -s /bin/bash [username]
+```
+
+## Set to "no password required"
+
+```bash
+passwd -d [username]
+```
 
 ## Move files/directories
 ```bash
@@ -181,3 +191,4 @@ pm2 save ## To Save your current pm2 instance
 pm2 kill
 pm2 resurrect
 ```
+
