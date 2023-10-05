@@ -192,3 +192,70 @@ pm2 kill
 pm2 resurrect
 ```
 
+## Change welcome screen
+
+Create custom file
+```bash
+cd /etc/update-motd.d/
+ls
+touch 99-custom-welcome
+nano 99-custom-welcome
+```
+
+Check permissions for everything in a folder
+```bash
+ls -l /etc/update-motd.d/
+```
+
+Give execute permissions to everything in a folder
+```bash
+sudo chmod +x /etc/update-motd.d/*
+```
+
+## Setup nginx
+
+### Install
+```bash
+sudo apt install nginx
+```
+
+### Commands
+
+```bash
+sudo systemctl stop nginx
+sudo systemctl start nginx
+sudo systemctl restart nginx
+sudo systemctl reload nginx
+# Startup
+sudo systemctl disable nginx
+sudo systemctl enable nginx
+```
+
+### Configuration
+
+Create file here
+`/etc/nginx/sites-available/my-domain`
+
+Edit file
+```bash
+server {  
+    listen 80;
+    server_name www.my-domain my-domain;
+    location / {  
+            proxy_pass http://localhost:8080;  
+            proxy_http_version 1.1;  
+            proxy_set_header Upgrade $http_upgrade;  
+            proxy_set_header Connection 'upgrade';  
+            proxy_set_header Host $host;  
+            proxy_cache_bypass $http_upgrade;  
+    }  
+}
+```
+
+
+Link file
+```bash
+sudo ln -s /etc/nginx/sites-available/my-domain /etc/nginx/sites-enabled/
+```
+
+
