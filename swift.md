@@ -3,9 +3,9 @@
 ## Variables
 
 ```swift
-private var x: Bool = false; 
+private var x: Bool = false
 
-let y: String = "Hello World";
+let y: String = "Hello World"
 ```
 
 ## States
@@ -67,3 +67,22 @@ Here, `$isShown` is a binding to the `@State` variable `isShown`.
 - fileprivate
 - private
 
+## (Return-) Types
+
+To describe the type of a variable, use `:`.
+
+```swift
+private var x: String = "Hello World!"
+```
+
+To describe the return type of a method or function, use `->`.
+
+```swift
+private var foo: (String, Int) -> Void
+
+public var bar: () -> Int
+
+func foobar() -> Int {
+    return 3
+}
+```
