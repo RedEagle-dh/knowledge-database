@@ -11,11 +11,13 @@ let y: String = "Hello World"
 ## States
 
 ```swift
-@State private var showModal = false;
+@State private var showModal: Bool = false // For primitive data types
 
 print(showModal) // -> false
 print($showModal) // -> false (as Binding)
 print(_showModal) // -> false (to initialize Value) Does not re-render when changed
+
+@StateObject private var myObject: myObjectClass = myObjectClass() // for objects
 ```
 
 ## Bindings
@@ -27,26 +29,30 @@ To indicate that a structure or class needs a binding to a variable, the `@Bindi
 
 ```swift
 @Binding var isShown: Bool
+@ObservedObject var myObject: myObjectClass
 ```
 
-This declaration means that isShown is a binding to a Bool variable.
+This declaration means that isShown is a binding to a Bool variable and myObject is a binding to myObjectClass which is passed from the parent view.
 
 ### Usage
 A binding is typically passed from a parent view to a child view. In the parent view, a `@State` variable is used to manage the state:
 
 ```swift
 @State private var isShown: Bool = false
+@StateObject private var myObject: myObjectClass = myObjectClass()
 ```
 
 Then, a binding to this `State` variable is passed to the child view:
 
 ```swift
 ChildView(isShown: $isShown)
+ChildView(myObject: $myObject)
 ```
 
 Here, `$isShown` is a binding to the `@State` variable `isShown`.
 
 ### Important to Note
+* A source of truth has to be private!
 * A `@Binding` can only be bound to a `@State` variable or another source of truth (like `@ObservedObject` or `@EnvironmentObject`).
 * If a variable is declared as a `@Binding`, it expects a binding as input. Passing a regular value directly (without the `$` prefix) will result in a compilation error.
 
