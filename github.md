@@ -4,7 +4,7 @@
 
 ### Deployment with docker
 
-If you deploy a Next.js project and struggle with environment variables, here you find your answers!
+If you deploy a Next.js project based on Node v20 and struggle with environment variables, here you find your answers!
 
 First you'll need a .github/workflows/docker-image.yml file in your project's root folder.
 
@@ -24,20 +24,24 @@ jobs:
     build-and-push:
         runs-on: ubuntu-latest
         environment: production
+        permissions:
+            contents: read
+            packages: write
+
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
             - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v1
+              uses: docker/setup-buildx-action@v3
 
             - name: Login to DockerHub
-              uses: docker/login-action@v1
+              uses: docker/login-action@v3
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Build and push Docker image
-              uses: docker/build-push-action@v2
+              uses: docker/build-push-action@v5
               with:
                   push: true
                   tags: username/repository:TAG
